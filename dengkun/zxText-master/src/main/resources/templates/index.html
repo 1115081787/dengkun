@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>表单</title>
+    </head>
+    <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/index.js}"></script>
+    <body>
+        <div align="center">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a th:href="@{/add}">添加和修改</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <table width="100%" border="1">
+                <tr align="center">
+                    <td width="10%">transactionId</td>
+                    <td width="10%">tradeId</td>
+                    <td width="10%">version</td>
+                    <td width="10%">securityCode</td>
+                    <td width="10%">quantity</td>
+                     <td width="10%">status</td>
+                      <td width="10%">type</td>
+                </tr>
+                
+                <tr align="center" th:each="list: ${pages.list}">
+                      <td >  [[${list.transactionId}]]</td>
+                      <td >  [[${list.tradeId}]]</td>
+                      <td >  [[${list.version}]]</td>
+                      <td >  [[${list.securityCode}]]</td>
+                      <td >  [[${list.quantity}]]</td>
+                      <td >  [[${list.status}]]</td>
+                      <td >  [[${list.type}]]</td>
+                </tr>
+            </table>
+        </div>
+        <div align="center">
+            <a th:unless="${pages.isFirstPage}"
+               th:href="@{/listTransactions(name=${name})}">首 页</a>
+            <a th:unless="${pages.isFirstPage}"
+               th:href="@{/listTransactions(start=${pages.hasPreviousPage}?${pages.prePage}:1, name=${name})}">上一页</a>
+            <a th:unless="${pages.isLastPage}"
+               th:href="@{/listTransactions(start=${pages.hasNextPage}?${pages.nextPage}:${pages.pages}, name=${name})}">下一页</a>
+            <a th:unless="${pages.isLastPage}"
+               th:href="@{/listTransactions(start=${pages.pages}, name=${name})}">末 页</a>
+        </div>
+
+        <script type="text/javascript">
+        function update(transactionId)
+
+        {
+           alert(transactionId);
+       
+
+        }
+        </script>
+    </body>
+</html>
